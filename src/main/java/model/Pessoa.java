@@ -1,20 +1,28 @@
-
+// PACKAGES
 package model;
 
-import java.util.Scanner;
+// IMMPORTS
+import javax.swing.JOptionPane;
 
-public class Pessoa {
+public abstract class Pessoa {
+
+   // ATTRIBUTES ===============================================================
    private String nome;
    private int idade;
+   public static final String TITULO = "Doutor";
+   public static final String CURSO = "Computação";
 
-    public Pessoa() {
+   // CONSTRUCTORS =============================================================
+   public Pessoa() {
       this("", 0);
    }
+
    public Pessoa(String nome, int idade) {
       this.nome = nome;
       this.idade = idade;
    }
 
+   // GETTER / SETTER ==========================================================
    public String getNome() {
       return nome;
    }
@@ -30,19 +38,17 @@ public class Pessoa {
    public void setIdade(int idade) {
       this.idade = idade;
    }
-   
+
+   // OTHER METHODS ============================================================
+   public abstract String getNomeFormatado();
    
    public void cadastrar() {
-      Scanner sc = new Scanner(System.in);
-      System.out.println("Digite o nome: ");
-      setNome(sc.nextLine());
-      System.out.println("Digite a idade: ");
-      setIdade(sc.nextInt());
+      setNome(JOptionPane.showInputDialog("NOME"));
+      setIdade(Integer.parseInt(JOptionPane.showInputDialog("IDADE")));
    }
-   
-   
+
    public String imprimir() {
-      return "Nome: " + getNome() + "\nIDADE: " + getIdade();
+      return "NOME: " + getNome() + "\nIDADE: " + getIdade();
    }
-     
+
 }

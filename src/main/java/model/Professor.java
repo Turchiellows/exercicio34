@@ -1,30 +1,27 @@
+// PACKAGES
 package model;
 
-import java.util.Scanner;
+// IMPORTS
+import javax.swing.JOptionPane;
 
 public class Professor extends Pessoa {
+   // ATTRIBUTES ===============================================================
 
-   private String curso;
    private double salario;
+   private String titulo;
 
+   // CONSTRUCTORS =============================================================
    public Professor() {
-      this("", 0, "", 0);
+      this("", 0, 0, "");
    }
 
-   public Professor(String nome, int idade, String curso, double salario) {
+   public Professor(String nome, int idade, double salario, String titulo) {
       super(nome, idade);
-      this.curso = curso;
       this.salario = salario;
+      this.titulo = titulo;
    }
 
-   public String getCurso() {
-      return curso;
-   }
-
-   public void setCurso(String curso) {
-      this.curso = curso;
-   }
-
+   // GETTER / SETTER ==========================================================
    public double getSalario() {
       return salario;
    }
@@ -33,18 +30,28 @@ public class Professor extends Pessoa {
       this.salario = salario;
    }
 
-   public void cadastar() {
-      super.cadastrar();
-      Scanner sc = new Scanner(System.in);
-      System.out.println("Digite o curso: ");
-      setCurso(sc.nextLine());
-      System.out.println("Digite o salário: ");
-      setSalario(sc.nextDouble());
+   public String getTitulo() {
+      return titulo;
    }
 
-   @Override
+   public void setTitulo(String titulo) {
+      this.titulo = titulo;
+   }
+
+   // OTHER METHODS ============================================================
+   public void cadastrar() {
+      super.cadastrar();
+      setSalario(Double.parseDouble(JOptionPane.showInputDialog("SALÁRIO")));
+      setTitulo(JOptionPane.showInputDialog(null, "TÍTULO", TITULO));
+   }
+
    public String imprimir() {
-      return super.imprimir() + "CURSO: " + getCurso();
+      return super.imprimir() + "\nSALÁRIO: " + getSalario() + "\nTÍTULO: " + getTitulo();
+   }
+   
+      @Override
+   public String getNomeFormatado() {
+      return "NOME: " + getTitulo() + " " + super.getNome();
    }
 
 }
